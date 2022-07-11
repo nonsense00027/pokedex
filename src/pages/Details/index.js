@@ -17,6 +17,15 @@ function Details() {
     }
   }, []);
 
+  const isPalindrome = () => {
+    if (!details) return "null";
+    const reverseName = details.name.split("").reverse().join("");
+    // console.log("reverse: ", reverseName);
+    return reverseName === details.name;
+  };
+
+  console.log(isPalindrome());
+
   const getStats = () => {
     if (details) {
       return details.stats.map((stat) => ({

@@ -21,18 +21,16 @@ export const PokemonContextProvider = ({ children }) => {
     fetchPokemons();
   }, []);
 
-  const fetchPokemons = () => {
-    axios
-      .get(url)
-      .then((response) => {
-        setPokemons(response.data.results);
-        setNextUrl(response.data.next);
-        setLoading(false);
-      })
-      .catch((err) => {
-        alert(err.message);
-        setLoading(false);
-      });
+  const fetchPokemons = async () => {
+    try {
+      const res = await axios.get(url);
+      setPokemons(res.data.results);
+      setNextUrl(res.data.next);
+      setLoading(false);
+    } catch (error) {
+      alert(error.message);
+      setLoading(false);
+    }
   };
 
   const fetchMorePokemons = () => {
